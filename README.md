@@ -35,6 +35,7 @@
   bash is /usr/local/bin/bash
   bash is /bin/bash
   ```
+  
   (прочие строки могут отличаться содержимым и порядком) В качестве ответа приведите команды, которые позволили 
 вам добиться указанного вывода или соответствующие скриншоты.
 
@@ -42,6 +43,7 @@
     ```
     mkdir /tmp/new_path_directory
     ln -s /usr/bin/bash /tmp/new_path_directory/
+    sudo ln -s /usr/bin/bash /usr/local/bin/
     export PATH="/tmp/new_path_directory:$PATH"
     PATH=$(echo "$PATH" | sed -e 's/:\/usr\/bin//')
     type -a bash
