@@ -44,7 +44,7 @@
       echo Hello from pts0 to tty1 > /dev/tty1
       ```
       Наблюдать получилось в консоли virtualbox на tty1
-      ![img.png](img.png)
+      ![img.png](img/img.png)
 7. Выполните команду `bash 5>&1`. К чему она приведет? Что будет, если вы выполните `echo netology > /proc/$$/fd/5`? Почему так происходит?
    1. `bash 5>&1` - создаст файловый дескриптор 5 и перенаправит его в stdout  
       `echo netology > /proc/$$/fd/5` - перенаправит stdout в дескриптор 5  
