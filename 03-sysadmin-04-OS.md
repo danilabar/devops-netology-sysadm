@@ -7,14 +7,13 @@
     * удостоверьтесь, что с помощью systemctl процесс корректно стартует, завершается, а после перезагрузки автоматически поднимается.  
 
    1. 
-   ```buildoutcfg
-   vagrant@vagrant:~$ systemctl cat node_exporter
+   ```bash
    [Unit]
    Description=Node Exporter
    
    [Service]
-   ExecStart=/usr/bin/node_exporter-1.3.0.linux-amd64/node_exporter
    EnvironmentFile=-/etc/default/node_exporter
+   ExecStart=/usr/bin/node_exporter/node_exporter $OPTIONS
    
    [Install]
    WantedBy=multi-user.target
@@ -22,16 +21,29 @@
    `systemctl enable node_exporter`  
    `systemctl start node_exporter`  
    `systemctl status node_exporter`
-   ```buildoutcfg
+   ```bash
    ● node_exporter.service - Node Exporter
-     Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
-     Active: active (running) since Mon 2021-11-22 20:59:44 UTC; 20s ago
-   Main PID: 890 (node_exporter)
+     Loaded: loaded (/lib/systemd/system/node_exporter.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2021-11-26 22:12:51 UTC; 4min 35s ago
+   Main PID: 13690 (node_exporter)
       Tasks: 3 (limit: 1071)
-     Memory: 2.3M
+     Memory: 1.8M
      CGroup: /system.slice/node_exporter.service
-             └─890 /usr/bin/node_exporter-1.3.0.linux-amd64/node_exporter
+             └─13690 /usr/bin/node_exporter/node_exporter --collector.disable-defaults --collector.os
    ```
+   2. Предлагаю уточнить как именно в службу будут передаваться дополнительные опции.
+      1. Поправил немного конфиг `unit-file`, добавив переменную `$OPTIONS`. В файле `/etc/default/node_exporter` описываются дополнительные опции и во время старта они попадают в переменные окружения и оттуда считываются.  
+      ```bash
+      vagrant@vagrant:~$ cat /etc/default/node_exporter
+      OPTIONS="--collector.disable-defaults --collector.os"
+      ``` 
+      ```bash
+      vagrant@vagrant:~$ sudo cat /proc/13690/environ
+      LANG=en_US.UTF-8LANGUAGE=en_US:PATH=/usr/local/sbin:/usr/local/bin:
+      /usr/sbin:/usr/bin:/sbin:/bin:/snap/binINVOCATION_ID=550cbef245714f28809fa1065fa6aa2e
+      JOURNAL_STREAM=9:51063OPTIONS=--collector.disable-defaults --collector.os
+      ```
+      Как видно выше, в конфигурационном файле описаны дополнительные параметры `--collector.disable-defaults --collector.os`, они попали в переменные окружения, это подтверждает `/proc/13690/environ` и `systemctl status node_exporter` показал, что Node Exporter запустился с этими параметрами `/usr/bin/node_exporter/node_exporter --collector.disable-defaults --collector.os`
 2. Ознакомьтесь с опциями node_exporter и выводом `/metrics` по-умолчанию. Приведите несколько опций, которые вы бы выбрали для базового мониторинга хоста по CPU, памяти, диску и сети.
    1. CPU
    ```buildoutcfg
