@@ -1,0 +1,11 @@
+[nodes:children]
+manager
+
+[manager]
+node01.netology.cloud ansible_host=CHANGE_EXTERNAL_IP
+
+[monitoring:children]
+machines
+
+[machines]
+node02.netology.cloud ansible_host=CHANGE_EXTERNAL_IP

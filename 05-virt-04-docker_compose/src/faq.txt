@@ -1,0 +1,21 @@
+Инициализация сети
+yc vpc network create --name net --labels my-label=netology --description "my first network via yc"
+
+Инициализация подсети
+yc vpc subnet create --name my-subnet-a --zone ru-central1-a --range 10.1.2.0/24 --network-name net --description "my first subnet via yc"
+
+У яндека есть ограничение для новых аккаунтов на количество новых сетей. Первую сеть создаёт packer и её надо удалить
+перед тем как деплоить terraform
+
+yc vpc subnet delete --name my-subnet-a && yc vpc network delete --name net
+
+
+
+prometheus - отвечает за агрегацию всех метрик
+alert manager - отвечает за срабатывание всех алертов
+grafana - отвечает за визуализацию всех метрик на основе шаблонов и языка запросов PromQL
+web скрвер Caddy - проксирует все апстримы что бы не выкладывать все микросервисы в сеть. Микросервис внутри контура все общаются,
+    а наружу смотрит только web сервер
+Push Gateway - отвечает за отправку с помощью Web Hook сообщений в мессенджер (Slack)
+Node Exporter - собирает метрики уровня ОС
+cAdvisor - собирает метрики на уровне движка Docker, смотрит за метриками всех запущенных микросервисов
