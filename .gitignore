@@ -1,2 +1,3 @@
 /venv/
 /vagrant/.vagrant/
+/07-terraform-03-basic/terraform/secret-key.txt
