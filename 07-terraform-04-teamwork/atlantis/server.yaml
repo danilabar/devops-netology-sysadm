@@ -1,0 +1,13 @@
+repos:
+- id: https://github.com/danilabar/tf_cloud
+  apply_requirements: [approved, mergeable]
+  allowed_overrides: [apply_requirements, workflow, delete_source_branch_on_merge]
+  allow_custom_workflows: true
+  delete_source_branch_on_merge: true
+workflows:
+  default:
+    plan:
+      steps:
+      - init
+      - plan:
+          extra_args: ["-lock=false"]
