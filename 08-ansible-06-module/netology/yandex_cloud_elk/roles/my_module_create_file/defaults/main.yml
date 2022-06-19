@@ -1,0 +1,4 @@
+---
+# defaults file for my_module_create_file
+path: './test_file.txt'
+content: "This test content"

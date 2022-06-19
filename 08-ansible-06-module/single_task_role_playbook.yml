@@ -1,0 +1,5 @@
+---
+- name: Test my module
+  hosts: localhost
+  roles:
+    - role: my_module_create_file
