@@ -1,0 +1,65 @@
+[
+  {
+    "timestamp": 1655931961653441696,
+    "cpu_load": "0.02",
+    "mem_available": "2058532",
+    "swap_free": "1918356",
+    "mem_active": "353004"
+  },
+  {
+    "timestamp": 1655932021683762984,
+    "cpu_load": "0.01",
+    "mem_available": "2058344",
+    "swap_free": "1918356",
+    "mem_active": "353108"
+  },
+  {
+    "timestamp": 1655932081714499212,
+    "cpu_load": "0.00",
+    "mem_available": "2057636",
+    "swap_free": "1918356",
+    "mem_active": "353212"
+  },
+  {
+    "timestamp": 1655932141746307253,
+    "cpu_load": "0.00",
+    "mem_available": "2057912",
+    "swap_free": "1918356",
+    "mem_active": "353228"
+  },
+  {
+    "timestamp": 1655932201783926823,
+    "cpu_load": "0.00",
+    "mem_available": "2057992",
+    "swap_free": "1918356",
+    "mem_active": "353308"
+  },
+  {
+    "timestamp": 1655932261816843388,
+    "cpu_load": "0.00",
+    "mem_available": "2057648",
+    "swap_free": "1918356",
+    "mem_active": "353364"
+  },
+  {
+    "timestamp": 1655932321851943342,
+    "cpu_load": "0.00",
+    "mem_available": "2057980",
+    "swap_free": "1918356",
+    "mem_active": "353416"
+  },
+  {
+    "timestamp": 1655932381883092516,
+    "cpu_load": "0.00",
+    "mem_available": "2058012",
+    "swap_free": "1918356",
+    "mem_active": "353448"
+  },
+  {
+    "timestamp": 1655932441911213119,
+    "cpu_load": "0.00",
+    "mem_available": "2057312",
+    "swap_free": "1918356",
+    "mem_active": "353504"
+  }
+]
