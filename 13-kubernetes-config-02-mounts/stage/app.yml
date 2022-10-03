@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stage-volume
+spec:
+  containers:
+    - name: nginx-first
+      image: nginx
+      volumeMounts:
+        - mountPath: "/static"
+          name: my-volume
+    - name: multitool-second
+      image: praqma/network-multitool:alpine-extra
+      env:
+        - name: HTTP_PORT
+          value: "1180"
+      volumeMounts:
+        - mountPath: "/static"
+          name: my-volume
+  volumes:
+    - name: my-volume
+      emptyDir: {}
