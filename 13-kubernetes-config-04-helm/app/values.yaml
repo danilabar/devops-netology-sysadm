@@ -1,0 +1,13 @@
+image_frontend:
+  repository: "danilabar/13-kubernetes-config_frontend"
+  tag: ""
+image_backend:
+  repository: "danilabar/13-kubernetes-config_backend"
+  tag: ""
+
+image:
+  tag: "latest"
+
+appVersion: ""
+
+namespace: ""

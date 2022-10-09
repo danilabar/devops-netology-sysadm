@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: backend
+  name: "backend-{{ .Values.appVersion | default .Chart.AppVersion | replace "." "-" }}"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - image: "{{ .Values.image_backend.repository }}:{{ .Values.image_backend.tag | default .Values.image.tag }}"
+          name: backend
+          env:
+            - name: DATABASE_URL
+              value: "postgres://postgres:postgres@postgres-{{ .Values.appVersion | default .Chart.AppVersion | replace "." "-" }}.{{ .Values.namespace }}.svc.cluster.local:5432/news"
+          ports:
+            - containerPort: 9000
+      restartPolicy: Always

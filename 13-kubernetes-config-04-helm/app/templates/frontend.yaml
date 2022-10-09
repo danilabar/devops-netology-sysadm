@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend
+  name: "frontend-{{ .Values.appVersion | default .Chart.AppVersion | replace "." "-" }}"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - image: "{{ .Values.image_frontend.repository }}:{{ .Values.image_frontend.tag | default .Values.image.tag }}"
+          name: frontend
+          ports:
+            - containerPort: 80
+          env:
+            - name: BASE_URL
+              value: "http://backend-{{ .Values.appVersion | default .Chart.AppVersion | replace "." "-" }}.{{ .Values.namespace }}.svc.cluster.local:9000"
+      restartPolicy: Always
